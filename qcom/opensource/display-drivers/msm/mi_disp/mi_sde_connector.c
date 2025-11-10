@@ -214,6 +214,7 @@ int mi_sde_connector_debugfs_esd_sw_trigger(void *display)
 }
 #endif
 
+#ifdef MI_AOD_FLAG_SUPPORTED
 static int mi_sde_connector_update_aod_status(struct drm_connector *connector,
 		bool is_aod_exit)
 {
@@ -280,6 +281,7 @@ static int mi_sde_connector_update_aod_status(struct drm_connector *connector,
 
 	return 0;
 }
+#endif
 
 int mi_sde_connector_set_em_pulse(struct drm_connector *connector, u32 bl_lvl)
 {
@@ -395,11 +397,13 @@ int mi_sde_connector_update_layer_state(struct drm_connector *connector,
 		}
 	}
 
+#ifdef MI_AOD_FLAG_SUPPORTED
 	if (connector->connector_type == DRM_MODE_CONNECTOR_DSI) {
 		display = (struct dsi_display *)c_conn->display;
 		if (display)
 			mi_sde_connector_update_aod_status(connector, !cur_flags.aod_flag);
 	}
+#endif
 
 	if (connector->connector_type == DRM_MODE_CONNECTOR_DSI) {
 		display = (struct dsi_display *)c_conn->display;

@@ -1476,6 +1476,9 @@ int dsi_display_set_power(struct drm_connector *connector,
 	case SDE_MODE_DPMS_ON:
 		if ((display->panel->power_mode == SDE_MODE_DPMS_LP1) ||
 			(display->panel->power_mode == SDE_MODE_DPMS_LP2)) {
+#ifndef MI_AOD_FLAG_SUPPORTED
+			display->panel->mi_cfg.bl_enable = true;
+#endif
 			rc = dsi_panel_set_nolp(display->panel);
 			if (mi_get_panel_id(display->panel->mi_cfg.mi_panel_id) == N16_PANEL_PB)
 				mi_dsi_panel_set_flat_mode(display->panel, false);
