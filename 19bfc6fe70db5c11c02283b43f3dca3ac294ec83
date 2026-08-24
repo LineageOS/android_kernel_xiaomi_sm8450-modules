@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "21aa3e27_539bc597",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2026-08-24T20:54:51Z",
+      "side": 1,
+      "message": "https://git.codelinaro.org/clo/la/platform/vendor/opensource/camera-kernel/-/commit/5492e33382de2377e6483e8727de7f5251ddc617\n\n[  535.115260] CAM_ERR: CAM-UTIL: cam_packet_util_get_kmd_buffer: 207 Invalid kmd buf size: 32996 offset: 3496 remain_len: 32984 cmd offset: 463232 size: 33060 length: 64",
+      "revId": "19bfc6fe70db5c11c02283b43f3dca3ac294ec83",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
