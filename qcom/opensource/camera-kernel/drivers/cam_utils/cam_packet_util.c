@@ -191,12 +191,18 @@ int cam_packet_util_get_kmd_buffer(struct cam_packet *packet,
 	}
 
 	remain_len -= (size_t)cmd_desc->offset;
-	if ((size_t)packet->kmd_cmd_buf_offset >= remain_len ||
-		(size_t)packet->kmd_cmd_buf_offset >= cmd_desc->size ||
-		(size_t)(cmd_desc->size - packet->kmd_cmd_buf_offset) >=
-		(remain_len - packet->kmd_cmd_buf_offset)) {
-		CAM_ERR(CAM_UTIL,
-			"Invalid kmd cmd buf offset: %d remain_len: %zu cmd offset: %d size: %d length: %d",
+	if ((size_t)packet->kmd_cmd_buf_offset >= remain_len) {
+		CAM_ERR(CAM_UTIL, "Invalid kmd cmd buf offset: %d remain_len: %d cmd offset: %d size: %d length: %d",
+			packet->kmd_cmd_buf_offset, remain_len,
+			cmd_desc->offset, cmd_desc->size, cmd_desc->length);
+		rc = -EINVAL;
+		goto rel_kmd_buf;
+	}
+
+	remain_len -= packet->kmd_cmd_buf_offset;
+	if ((size_t)cmd_desc->size - (size_t)cmd_desc->length >= remain_len) {
+		CAM_ERR(CAM_UTIL, "Invalid kmd buf size: %d offset: %d remain_len: %d cmd offset: %d size: %d length: %d",
+			cmd_desc->size - cmd_desc->length,
 			packet->kmd_cmd_buf_offset, remain_len,
 			cmd_desc->offset, cmd_desc->size, cmd_desc->length);
 		rc = -EINVAL;

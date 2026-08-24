@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-2.0-only
 /*
  * Copyright (c) 2020-2021, The Linux Foundation. All rights reserved.
- * Copyright (c) 2022,2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 #include "msm_vidc_control.h"
@@ -876,7 +876,11 @@ int msm_v4l2_op_s_ctrl(struct v4l2_ctrl *ctrl)
 		rc = msm_vidc_update_buffer_count_if_needed(inst, ctrl);
 		if (rc)
 			return rc;
-
+		if (ctrl->id == V4L2_CID_MPEG_VIDC_ENC_ALLOC_INTERNAL && ctrl->val) {
+			rc = msm_venc_process_allocation_job(inst);
+			if (rc)
+				return rc;
+		}
 		return 0;
 	}
 
@@ -985,7 +989,7 @@ int msm_vidc_adjust_bitrate_mode(void *instance, struct v4l2_ctrl *ctrl)
 		goto update;
 	}
 
-	if (!frame_rc && !is_image_session(inst)) {
+	if (!frame_rc) {
 		hfi_value = HFI_RC_OFF;
 		goto update;
 	}
@@ -1860,6 +1864,40 @@ int msm_vidc_adjust_peak_bitrate(void *instance, struct v4l2_ctrl *ctrl)
 		adjusted_value, __func__);
 
 	return 0;
+}
+
+int msm_vidc_adjust_avc_min_qp(void *instance, struct v4l2_ctrl *ctrl)
+{
+	int rc = 0;
+	struct msm_vidc_inst *inst = (struct msm_vidc_inst *) instance;
+
+	if (!inst || !inst->capabilities) {
+		d_vpr_e("%s: invalid params\n", __func__);
+		return -EINVAL;
+	}
+
+	if (ctrl)
+		msm_vidc_update_cap_value(inst, MIN_FRAME_QP,
+			ctrl->val, __func__);
+
+	return rc;
+}
+
+int msm_vidc_adjust_avc_max_qp(void *instance, struct v4l2_ctrl *ctrl)
+{
+	int rc = 0;
+	struct msm_vidc_inst *inst = (struct msm_vidc_inst *) instance;
+
+	if (!inst || !inst->capabilities) {
+		d_vpr_e("%s: invalid params\n", __func__);
+		return -EINVAL;
+	}
+
+	if (ctrl)
+		msm_vidc_update_cap_value(inst, MAX_FRAME_QP,
+			ctrl->val, __func__);
+
+	return rc;
 }
 
 int msm_vidc_adjust_hevc_min_qp(void *instance, struct v4l2_ctrl *ctrl)
