@@ -352,14 +352,14 @@ static int32_t cam_sensor_i2c_pkt_parse(struct cam_sensor_ctrl_t *s_ctrl,
 		i2c_reg_settings->request_id = 0;
 		i2c_reg_settings->is_settings_valid = 0;
 		rc = cam_sensor_power_up_extra(s_ctrl);
-		return rc;
+		goto end;
 	}
 	case CAM_SENSOR_PACKET_OPCODE_SENSOR_ISPV3_POWERDOWN: {
 		i2c_reg_settings = &i2c_data->init_settings;
 		i2c_reg_settings->request_id = 0;
 		i2c_reg_settings->is_settings_valid = 0;
 		rc = cam_sensor_power_down_extra(s_ctrl);
-		return rc;
+		goto end;
 	}
 #endif
 	case CAM_SENSOR_PACKET_OPCODE_SENSOR_RESCONFIG: {
