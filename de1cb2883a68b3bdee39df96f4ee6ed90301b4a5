@@ -52,6 +52,24 @@
       "parentUuid": "4e256a74_734f05c6",
       "revId": "de1cb2883a68b3bdee39df96f4ee6ed90301b4a5",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fb231ac_4c1b4de0",
+        "filename": "qcom/opensource/camera-kernel/drivers/cam_sensor_module/cam_sensor/cam_sensor_core.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 32844
+      },
+      "writtenOn": "2026-09-21T01:12:32Z",
+      "side": 1,
+      "message": "This should probably be fixed in another patch, but I\u0027m just pointing it out.",
+      "parentUuid": "fad8cfbb_7403384f",
+      "revId": "de1cb2883a68b3bdee39df96f4ee6ed90301b4a5",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
