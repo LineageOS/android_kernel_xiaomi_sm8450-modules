@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc2f725e_eb8ea8a0",
+        "filename": "qcom/opensource/camera-kernel/drivers/cam_sensor_module/cam_sensor/cam_sensor_core.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 32844
+      },
+      "writtenOn": "2026-09-21T00:45:27Z",
+      "side": 1,
+      "message": "This code block can also cause a memory leak and needs to be fixed.\nReplace `return rc` with `goto end`.",
+      "revId": "de1cb2883a68b3bdee39df96f4ee6ed90301b4a5",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
