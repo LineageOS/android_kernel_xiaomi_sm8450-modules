@@ -1938,6 +1938,8 @@ void rmnet_descriptor_deinit(struct rmnet_port *port)
 	struct rmnet_frag_descriptor *frag_desc, *tmp;
 
 	pool = port->frag_desc_pool;
+	if (!pool)
+		return;
 
 	list_for_each_entry_safe(frag_desc, tmp, &pool->free_list, list) {
 		kfree(frag_desc);
@@ -1945,6 +1947,7 @@ void rmnet_descriptor_deinit(struct rmnet_port *port)
 	}
 
 	kfree(pool);
+	port->frag_desc_pool = NULL;
 }
 
 int rmnet_descriptor_init(struct rmnet_port *port)
