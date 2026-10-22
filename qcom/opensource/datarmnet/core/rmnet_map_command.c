@@ -290,39 +290,21 @@ void rmnet_map_cmd_init(struct rmnet_port *port)
 int rmnet_map_dl_ind_register(struct rmnet_port *port,
 			      struct rmnet_map_dl_ind *dl_ind)
 {
-	struct rmnet_map_dl_ind *dl_ind_iterator;
-	bool empty_ind_list = true;
+	struct rmnet_map_dl_ind *curr;
 
 	if (!port || !dl_ind || !dl_ind->dl_hdr_handler_v2 ||
 	    !dl_ind->dl_trl_handler_v2)
 		return -EINVAL;
 
-	list_for_each_entry_rcu(dl_ind_iterator, &port->dl_list, list) {
-		empty_ind_list = false;
-		if (dl_ind_iterator->priority < dl_ind->priority) {
-			if (dl_ind_iterator->list.next) {
-				if (dl_ind->priority
-				    < list_entry_rcu(dl_ind_iterator->list.next,
-				    typeof(*dl_ind_iterator), list)->priority) {
-					list_add_rcu(&dl_ind->list,
-						     &dl_ind_iterator->list);
-					break;
-				}
-			} else {
-				list_add_rcu(&dl_ind->list,
-					     &dl_ind_iterator->list);
-				break;
-			}
-		} else {
-			list_add_tail_rcu(&dl_ind->list,
-					  &dl_ind_iterator->list);
-			break;
+	/* Insert before the first entry with equal or higher priority. */
+	list_for_each_entry_rcu(curr, &port->dl_list, list) {
+		if (dl_ind->priority <= curr->priority) {
+			list_add_tail_rcu(&dl_ind->list, &curr->list);
+			return 0;
 		}
 	}
 
-	if (empty_ind_list)
-		list_add_rcu(&dl_ind->list, &port->dl_list);
-
+	list_add_tail_rcu(&dl_ind->list, &port->dl_list);
 	return 0;
 }
 EXPORT_SYMBOL(rmnet_map_dl_ind_register);
