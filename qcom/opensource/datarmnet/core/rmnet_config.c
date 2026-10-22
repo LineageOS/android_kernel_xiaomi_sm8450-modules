@@ -151,7 +151,10 @@ static int rmnet_register_real_device(struct net_device *real_dev)
 
 	rc = rmnet_descriptor_init(port);
 	if (rc) {
+		netdev_rx_handler_unregister(real_dev);
 		rmnet_descriptor_deinit(port);
+		dev_put(real_dev);
+		kfree(port);
 		return rc;
 	}
 
