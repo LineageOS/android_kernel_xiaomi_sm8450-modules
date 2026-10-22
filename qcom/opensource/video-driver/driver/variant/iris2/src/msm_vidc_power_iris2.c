@@ -30,7 +30,8 @@ u64 msm_vidc_calc_freq_iris2(struct msm_vidc_inst *inst, u32 data_size)
 	}
 
 	core = inst->core;
-	if (!core->dt) {
+	if (!core->dt || !core->dt->allowed_clks_tbl ||
+	    !core->dt->allowed_clks_tbl_size) {
 		d_vpr_e("%s: invalid params\n", __func__);
 		return freq;
 	}
