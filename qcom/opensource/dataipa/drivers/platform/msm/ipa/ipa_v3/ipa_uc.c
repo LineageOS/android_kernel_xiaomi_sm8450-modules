@@ -1733,6 +1733,11 @@ int ipa3_uc_quota_monitor(uint64_t quota)
 	struct ipa_mem_buffer cmd;
 	struct IpaQuotaMonitoring_t *quota_info;
 
+	if (!ipa3_ctx->fnr_info.valid) {
+		IPAERR("fnr_info not valid!\n");
+		return -EINVAL;
+	}
+
 	cmd.size = sizeof(*quota_info);
 	cmd.base = dma_alloc_coherent(ipa3_ctx->uc_pdev, cmd.size,
 		&cmd.phys_base, GFP_KERNEL);
@@ -1805,6 +1810,11 @@ int ipa3_uc_bw_monitor(struct ipa_wdi_bw_info *info)
 	if (info->num > BW_MONITORING_MAX_THRESHOLD) {
 		IPAERR("%d, support max %d bw monitor\n", info->num,
 		BW_MONITORING_MAX_THRESHOLD);
+		return -EINVAL;
+	}
+
+	if (!ipa3_ctx->fnr_info.valid) {
+		IPAERR("fnr_info not valid!\n");
 		return -EINVAL;
 	}
 
