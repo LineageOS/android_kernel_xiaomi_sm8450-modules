@@ -67,6 +67,10 @@ static void print_sfr_message(struct msm_vidc_core *core)
 
 	vsfr = (struct msm_vidc_sfr *)core->sfr.align_virtual_addr;
 	if (vsfr) {
+		if (core->sfr.mem_size <= sizeof(u32)) {
+			d_vpr_e("%s: SFR buffer too small\n", __func__);
+			return;
+		}
 		if (vsfr->bufSize != core->sfr.mem_size) {
 			d_vpr_e("Invalid SFR buf size %d actual %d\n",
 				vsfr->bufSize, core->sfr.mem_size);
