@@ -1617,8 +1617,9 @@ int ipa3_ipv6ct_init_cmd(
 		return -EPERM;
 	}
 
-	if (init->table_entries == 0) {
-		IPAERR_RL("Table entries is zero\n");
+	if (init->table_entries == 0 ||
+	    init->table_entries == U16_MAX) {
+		IPAERR_RL("Invalid table entries: %u\n", init->table_entries);
 		return -EPERM;
 	}
 
