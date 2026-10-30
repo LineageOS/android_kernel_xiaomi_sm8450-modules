@@ -70,6 +70,24 @@
       "parentUuid": "8e95e1cf_db22182e",
       "revId": "e3b403921b818863f0ad3f499b938765ec2f65cb",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0740e3da_6516be2c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2026-10-30T23:19:15Z",
+      "side": 1,
+      "message": "I don\u0027t think there is much point doing so much random backports/fixes like this, especially in device specific kernels, when no actual issue is fixed.\n\nAlso your changes should be marked with the proper commit message if an AI assistant has been used.",
+      "parentUuid": "8e95e1cf_db22182e",
+      "revId": "e3b403921b818863f0ad3f499b938765ec2f65cb",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
