@@ -34,6 +34,24 @@
       "parentUuid": "5536deba_250cc586",
       "revId": "e3b403921b818863f0ad3f499b938765ec2f65cb",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e95e1cf_db22182e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 32837
+      },
+      "writtenOn": "2026-10-30T23:16:00Z",
+      "side": 1,
+      "message": "I tried comparing kernel branches to avoid running into similar issues in future. Didn\u0027t quite go as planned, though.",
+      "parentUuid": "bf48a692_a1ee0348",
+      "revId": "e3b403921b818863f0ad3f499b938765ec2f65cb",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
