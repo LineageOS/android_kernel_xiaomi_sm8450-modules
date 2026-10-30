@@ -16,6 +16,24 @@
       "message": "what is the point of this whole chain?",
       "revId": "e3b403921b818863f0ad3f499b938765ec2f65cb",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf48a692_a1ee0348",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 32837
+      },
+      "writtenOn": "2026-10-30T23:01:20Z",
+      "side": 1,
+      "message": "The goal of this series is to backport missing driver fixes and address issues identified during an audit of the SM8450 5.10 kernel against newer implementations.\n\nThe changes mainly focus on memory safety, bounds checking, NULL pointer handling, and error paths. Only fixes applicable to our existing driver stack were selected, avoiding unnecessary feature changes or ABI dependencies.",
+      "parentUuid": "5536deba_250cc586",
+      "revId": "e3b403921b818863f0ad3f499b938765ec2f65cb",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
